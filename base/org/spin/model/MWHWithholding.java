@@ -542,9 +542,14 @@ public class MWHWithholding extends X_WH_Withholding implements DocAction, DocOp
 			String orderType, String isSOTrx, int AD_Table_ID,
 			String[] docAction, String[] options, int index) {
 		//	Valid Document Action
-		if (AD_Table_ID == Table_ID){
+		if (AD_Table_ID == Table_ID) {
 			if (docStatus.equals(DocumentEngine.STATUS_Completed)) {
 				options[index++] = DocumentEngine.ACTION_Void;
+			} else if ((docStatus.equalsIgnoreCase(STATUS_Drafted))
+				|| (docStatus.equalsIgnoreCase(STATUS_Invalid))
+				|| (docStatus.equalsIgnoreCase(STATUS_InProgress))) {
+
+				options[index++] = DocumentEngine.ACTION_Complete;
 			}
 		}
 		//	Default

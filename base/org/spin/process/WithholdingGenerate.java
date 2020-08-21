@@ -187,7 +187,7 @@ public class WithholdingGenerate extends WithholdingGenerateAbstract {
 						else if (whDefinition.getC_Charge_ID()> 0)
 							invoiceLine.setC_Charge_ID(whDefinition.getC_Charge_ID());
 						else 
-							new AdempiereException("@NotFound@ @C_Charge_ID@");
+							throw new AdempiereException("@NotFound@ @C_Charge_ID@");
 						
 						invoiceLine.setQty(Env.ONE);
 						invoiceLine.setPrice(withholding.getWithholdingAmt());
